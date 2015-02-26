@@ -1,28 +1,99 @@
 <!--page form.html in the nodeform folder in the current directory-->
 <!DOCTYPE html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Untitled Document</title>
 </head>
- 
+
 <body>
-<form id="form1" name="form1" method="post" action="getData">
-  <p>
-  <label><label>Login Credentials.<br />
-  </label>Username
-  <input type="text" name="username" id="username" placeholder="username" />
+  <form id="form1" name="form1" method="post" action="getData">
+    <p>
+    <label><label>Login Credentials.<br />
+      </label>Username
+      <input type="text" name="username" id="username" placeholder="username" />
     </label>
-  </p>
-  <p>
+    </p>
+    <p>
     <label>Password
-        <input type="password" name="password" id="password" placeholder="password" />
+      <input type="password" name="password" id="password" placeholder="password" onkeydown= "getFirstTimeStamp()" onkeyup = "getSecondTimeStamp(event)"/>
     </label>
-  </p>
-  <p>
+    <p>
+    Only use the backpace to remove characters. DO NOT SELECT ALL AND DELETE THE PASSWORD, THIS WILL CAUSE PROBLEMS WITH THE SYSTEM!!
+    </p>
+    </p>
+    <p>
     <label>
-      <input type="submit" name="submit" id="submit" value="Submit" />
+      <input type="submit" name="submit" id="submit" value="Submit" onclick = "sendArray()" />
     </label>
-  </p>
-</form>
+    </p>
+    <input type="hidden" name="array" id="array">
+  </form>
+  <script>
+    times = [];
+    time1=0;
+    function getFirstTimeStamp(){
+      time1 = Date.now();
+    }
+
+    function getSecondTimeStamp(e){
+      var time2 = Date.now();
+      getTimeDifference(time1,time2,e);
+    }
+
+    function getTimeDifference(time1, time2,e){
+      var difference = time2- time1;
+      console.log("Time1: " + time1);
+      console.log("Time2: " + time2);
+      console.log("difference: " + difference);
+      if (e.keyCode != 9){
+        if (times.length > 1){
+          if (e.keyCode != 8){
+            var thing = times[times.length-1].time;
+            var diff = time1 - times[times.length -1].time;
+            //console.log("Thing: " + thing);
+            console.log("Diff: " + diff);
+            times.push({time: time1, keyUpDown: difference, keyPress: diff});
+          }
+          else{
+            times.pop();
+            console.log("Item has been deleted");
+            //var oldTime = times[times.length -1 ].time;
+            //console.log("OldTime: " + oldTime);
+            times[times.length -1].time = time1;
+            //console.log("New Time: "+ times[times.length -1].time);
+          }
+        }
+        else if(times.length == 1){
+          if(e.keyCode != 8){
+            var thing = times[times.length-1].time;
+            var diff = time1- times[times.length -1].time;
+            //console.log("thing: " + thing);
+            console.log("Diff: " + diff);
+            times.push({time: time1, keyUpDown: difference, keyPress: diff});
+          }
+          else{
+            times.pop()
+            console.log("The last item has been removed");
+          }
+
+        }
+        else{
+          if(e.keyCode != 8){
+            times.push({time: time1, keyUpDown: difference, keyPress: null});
+          }
+          else{
+            console.log("There is nothing in the array to delete");
+          }
+        }
+      }
+      else{
+        console.log("Tab was pressed");
+      }
+    }
+    function sendArray(){
+      document.getElementById('array').value = JSON.stringify(times);
+    }
+
+  </script>
 </body>
 </html>

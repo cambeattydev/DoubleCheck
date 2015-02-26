@@ -1,0 +1,22 @@
+{
+  "name": "KeystrokeDynamics",
+  "version": "1.0.0",
+  "description": "Library for developers to use to integrate keystroke dynamic authorization into user authentification",
+  "main": "nodeForm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckbeatty/KeystrokeDynamics.git"
+  },
+  "author": "Cameron Beatty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ckbeatty/KeystrokeDynamics/issues"
+  },
+  "homepage": "https://github.com/ckbeatty/KeystrokeDynamics",
+  "dependencies": {
+    "sqlite3": "^3.0.5"
+  }
+}

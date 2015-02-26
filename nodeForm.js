@@ -5,26 +5,33 @@ var http = require('http'),
     qs = require('querystring');
  
 var server = http.createServer(function (req,res){
-                            
     var url_parts = url.parse(req.url,true);
     //console.log(url_parts);
     
     var body = '';
+    //Need case possiblity for both registration and regular login
     if(req.method === 'POST'){
-       // res.end('post');
-       console.log('Request found with POST method');     
+      // res.end('post');
+      console.log('Request found with POST method');     
         req.on('data', function (data) {
             body += data;
-            console.log('got data:'+data);
+            //console.log('got data:'+data);
         });
         req.on('end', function () {
- 
+            res.write('<!doctype html>\n<html lang="en">\n' +
+               '<head>\n<meta charset="utf-8">');
             var POST = qs.parse(body);
             // use POST
-            res.end("Sent data are username:"+POST.username+" password:"+POST.password);
+            var arr= JSON.parse(POST.array);
+            res.write('<h4>Array</h4>');
+            for (var i=0; i<arr.length; i++){
+                res.write(i+"th thing:{time: "+ arr[i].time+ " KeyUpDown: "+ arr[i].keyUpDown+", KeyPress: "+arr[i].keyPress+"}<br>"); 
+            }
+        res.end("<br>" +"Sent data are name:"+POST.username+" password:"+POST.password);
+
  
         });
-        
+
        
     } else {
     console.log('Request found with GET method');     
@@ -40,7 +47,7 @@ var server = http.createServer(function (req,res){
          console.log('Serving the Got Data.');
         getData(res,url_parts);
     }
-        }
+    }
  
 });
 server.listen(8080);
