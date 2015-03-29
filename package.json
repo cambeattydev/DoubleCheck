@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ckbeatty/KeystrokeDynamics.git"
+    "url": "https://github.com/ckbeatty/DoubleCheck.git"
   },
   "author": "Cameron Beatty",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ckbeatty/KeystrokeDynamics/issues"
+    "url": "https://github.com/ckbeatty/DoubleChecks/issues"
   },
-  "homepage": "https://github.com/ckbeatty/KeystrokeDynamics",
+  "homepage": "https://github.com/ckbeatty/DoubleCheck",
   "dependencies": {
     "sqlite3": "^3.0.5"
   }
