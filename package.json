@@ -1,8 +1,8 @@
 {
-  "name": "KeystrokeDynamics",
+  "name": "DoubleCheck",
   "version": "1.0.0",
   "description": "Library for developers to use to integrate keystroke dynamic authorization into user authentification",
-  "main": "nodeForm.js",
+  "main": "doubleCheck.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,7 +13,7 @@
   "author": "Cameron Beatty",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ckbeatty/DoubleChecks/issues"
+    "url": "https://github.com/ckbeatty/DoubleCheck/issues"
   },
   "homepage": "https://github.com/ckbeatty/DoubleCheck",
   "dependencies": {
