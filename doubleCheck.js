@@ -208,10 +208,11 @@ function doubleCheck() {
   }
 
 }
-
-  var test = new doubleCheck();
-  var jokeArray = [0,1,2,3];
-  var jsonArray = JSON.stringify(jokeArray);
+var test = new doubleCheck();
+module.exports = test;
+//return test;
+//  var jokeArray = [0,1,2,3];
+//  var jsonArray = JSON.stringify(jokeArray);
 /*test.createUser("test",jsonArray, function(worked)
       {
         console.log("Create user error: "+ worked);
@@ -224,7 +225,7 @@ function doubleCheck() {
       {
         console.log("Delete user error: " + err);
       });*/
-var newArray = [ [{ keyUpDown: 79.4, keyPress: 0 },
+/* var newArray = [ [{ keyUpDown: 79.4, keyPress: 0 },
                   { keyUpDown: 95.9, keyPress: 153.2 },
                   { keyUpDown: 74.3, keyPress: 201.7 },
                   { keyUpDown: 79.9, keyPress: 152.9 },
@@ -240,7 +241,7 @@ var newArray = [ [{ keyUpDown: 79.4, keyPress: 0 },
                   { time: 1426805322769, keyUpDown: 72, keyPress: 96 },
                   { time: 1426805322913, keyUpDown: 72, keyPress: 144 },
                   { time: 1426805323057, keyUpDown: 80, keyPress: 144 } ]];
-var newJsonArray = JSON.stringify(newArray);
+var newJsonArray = JSON.stringify(newArray); */
 
 /*test.updateUser("test", newJsonArray, function(err)
       {
