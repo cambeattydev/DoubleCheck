@@ -4,7 +4,9 @@
   "description": "Library for developers to use to integrate keystroke dynamic authorization into user authentification",
   "main": "doubleCheck.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node scripts/createFile.js",
+    "uninstall": "node scripts/removeFile.js"
   },
   "repository": {
     "type": "git",
