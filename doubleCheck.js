@@ -1,6 +1,6 @@
 function doubleCheck() {
   this.fs = require('fs');
-  this.file = "doubleCheckDatabaseTest.db";
+  this.file = "./node_modules/DoubleCheck/doubleCheckDatabaseTest.db";
   this.exists = this.fs.existsSync(this.file);
   //Check to see if database already exists if it does not, create it
   //Create a user with the time array that was proided by the user
