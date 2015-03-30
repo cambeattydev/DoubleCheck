@@ -1,13 +1,17 @@
 window.onload = function (){
   var passwords = document.getElementsByClassName("password");
-  console.log("Passwords.length: " + passwords.length);
+  //console.log("Passwords.length: " + passwords.length);
   //Walk through array containing elements with class="password"
   for (var i=0; i<passwords.length; i++){
-    passwords[i].setAttribute("onkeydown", "getFirstTimeStamp()");
-    passwords[i].setAttribute("onkeyup", "getSecondTimeStamp(event)");
-    passwords[i].setAttribute("onblur" , "doubleCheck()");
-    console.log(passwords[i]);
+    passwords[i].addEventListener("keydown", getFirstTimeStamp);
+    passwords[i].addEventListener("keyup", getSecondTimeStamp);
+    passwords[i].addEventListener("blur" , doubleCheck);
+    //console.log(passwords[i]);
   }
+  var buttons = document.getElementsByClassName("button");
+  buttons[0].addEventListener("click", sendArray);
+  var forms = document.getElementsByClassName("doubleCheckForm");
+  forms[0].addEventListener("submit", checkEqual);
 }
 
 times1 = [];
@@ -19,6 +23,7 @@ function getFirstTimeStamp(){
 }
 
 function getSecondTimeStamp(e){
+  console.log("in Second time stamp functon with event " + e.keyCode);
   var time2 = Date.now();
   getTimeDifference(time1,time2,e);
 }
@@ -102,32 +107,32 @@ function checkEqual(theForm) {
         for (var i=0; i<passwords.length; i++){
           passwords[i].value = "";
         }
-          return false;
-        }
+        return false;
       }
-      return true;
     }
-
+    return true;
   }
 
-  function sendArray(){
-    if (times1.length != 0){
-      bigArray.push(times1);
-    }
-    //Create hidden field the form
-    var forms = document.forms;
-    var form1 = forms[0];
-    //console.log("form1: " + form1.innerHTML);
-    //Make sure there is a form add hidden array
-    if (form1 != null){
-      var input = document.createElement("input");
-      input.setAttribute("type", "hidden");
-      input.setAttribute("name", "timesArray");
-      input.setAttribute("id", "timesArray");
-      form1.appendChild(input);
-      //Create a array that contains all the small times array
-      document.getElementById('timesArray').value = JSON.stringify(bigArray);
-      //alert(JSON.stringify(bigArray));
-    }
+}
 
+function sendArray(){
+  if (times1.length != 0){
+    bigArray.push(times1);
   }
+  //Create hidden field the form
+  var forms = document.getElementsByClassName("doubleCheckForm");
+  var form1 = forms[0];
+  //console.log("form1: " + form1.innerHTML);
+  //Make sure there is a form add hidden array
+  if (form1 != null){
+    var input = document.createElement("input");
+    input.setAttribute("type", "hidden");
+    input.setAttribute("name", "timesArray");
+    input.setAttribute("id", "timesArray");
+    form1.appendChild(input);
+    //Create a array that contains all the small times array
+    document.getElementById('timesArray').value = JSON.stringify(bigArray);
+    //alert(JSON.stringify(bigArray));
+  }
+
+}

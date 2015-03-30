@@ -3,11 +3,13 @@ window.onload = function (){
   console.log("Passwords.length: " + passwords.length);
   //Walk through array containing elements with class="password"
   for (var i=0; i<passwords.length; i++){
-    passwords[i].setAttribute("onkeydown", "getFirstTimeStamp()");
-    passwords[i].setAttribute("onkeyup", "getSecondTimeStamp(event)");
-    passwords[i].setAttribute("onblur" , "doubleCheck()");
-    console.log(passwords[i]);
+    passwords[i].addEventListener("keydown", getFirstTimeStamp);
+    passwords[i].addEventListener("keyup", getSecondTimeStamp);
+    passwords[i].addEventListener("blur" , doubleCheck);
+    //console.log(passwords[i]);
   }
+  var buttons = document.getElementsByClassName("button");
+    buttons[0].addEventListener("click", sendArray);
 }
 
 times = [];
@@ -73,7 +75,7 @@ function getTimeDifference(time1, time2,e){
 }
 function sendArray(){
   //Create hidden field the form
-  var forms = document.forms;
+  var forms = document.getElementsByClassName("doubleCheckForm");
   var form1 = forms[0];
   console.log("form1: " + form1.innerHTML);
   //Make sure there is a form add hidden array
