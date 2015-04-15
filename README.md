@@ -30,10 +30,28 @@ This will create a file system that looks like:
 │           ├── test.html
 │           └── testing.js
 ├── testing.js
-└── tree.txt
 ```
+##Usage
+
+**Note:** the module must be [installed](#installing) before use.
+
+```js
+var dc = require('DoubleCheck');
+```
+This will givue you functions avaliable to it. These are avaliable checking the API
+of the system.
 
 ## Dependencies
-*sqlite3
+- sqlite3
 
+## API
 
+See the [API documentation](https://github.com/ckbeatty/DoubleCheck/wiki/Double-Check-API) in the wiki.
+
+## Contributors
+
+* [Cameron Beatty](https://github.com/ckbeatty)
+
+## License
+
+`DoubleCheck` is [ISC](http://opensource.org/licenses/ISC)
