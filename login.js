@@ -81,10 +81,10 @@ function sendArray(){
   if (form1 != null){
     var input = document.createElement("input");
     input.setAttribute("type", "hidden");
-    input.setAttribute("name", "array");
-    input.setAttribute("id", "array");
+    input.setAttribute("name", "timesArray");
+    input.setAttribute("id", "timesArray");
     form1.appendChild(input);
-    document.getElementById('array').value = JSON.stringify(times);
+    document.getElementById('timesArray').value = JSON.stringify(times);
   }
 }
 
