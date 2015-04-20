@@ -31,7 +31,7 @@ This will create a file system that looks like:
 │           └── testing.js
 ├── testing.js
 ```
-##Usage
+## Usage
 
 **Note:** the module must be [installed](#installing) before use.
 
@@ -42,7 +42,7 @@ This will givue you functions avaliable to it. These are avaliable checking the 
 of the system.
 
 ## Dependencies
-- sqlite3
+- [sqlite3](https://www.npmjs.com/package/sqlite3)
 
 ## API
 

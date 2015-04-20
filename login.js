@@ -5,7 +5,6 @@ window.onload = function (){
   for (var i=0; i<passwords.length; i++){
     passwords[i].addEventListener("keydown", getFirstTimeStamp);
     passwords[i].addEventListener("keyup", getSecondTimeStamp);
-    passwords[i].addEventListener("blur" , doubleCheck);
     //console.log(passwords[i]);
   }
   var buttons = document.getElementsByClassName("button");
