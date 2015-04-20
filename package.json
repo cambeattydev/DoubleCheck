@@ -5,7 +5,7 @@
   "main": "doubleCheck.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "node scripts/createFile.js",
+    "install": "node scripts/createFile.js"
   },
   "repository": {
     "type": "git",
