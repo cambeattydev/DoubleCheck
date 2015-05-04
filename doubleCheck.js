@@ -121,7 +121,7 @@ function doubleCheck() {
                 {
                   //Everything went fine
                   if (err == null){
-                    console.log("Updated user: " + username + " to array: "+ array);
+                    console.log("Updated user: " + username + " to array: "+ sentArray);
                     db.close();
                     callback(0);
                   }
@@ -217,7 +217,7 @@ function doubleCheck() {
         {
           //Everything went fine
           if (err == null){
-            console.log("Updated user: " + username + " to array: "+ array);
+            console.log("Updated user: " + username + " to array: "+ sentArray);
             db.close();
             callback(0);
           }
