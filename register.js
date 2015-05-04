@@ -82,6 +82,12 @@ function doubleCheck(){
       }
       console.log("}");*/
     bigArray.push(times1);
+    console.log("{");
+
+    for (var i=0; i<bigArray.length;i++){
+      console.log(bigArray[i].toString());
+    }
+    console.log("}");
     times1=[];
   }
   else{

@@ -76,10 +76,10 @@ function doubleCheck() {
       //Array has been found and returned
       else{
         var sumofKeyUp = 0,
-            sumofKeyPress = 0,
-            dbArray = JSON.parse(row.array),
-            keyPressDelta =0,
-            keyUpDownDelta =0;
+      sumofKeyPress = 0,
+      dbArray = JSON.parse(row.array),
+      keyPressDelta =0,
+      keyUpDownDelta =0;
         //Check if the array are same size or the login array will have an enter key
         //pushed in there as well
         if (dbArray.length == recievedArray.length || recievedArray.length ==  dbArray.length + 1){
@@ -107,8 +107,32 @@ function doubleCheck() {
             console.log("---------------------- Successfull Login ----------------------");
             console.log("KeyPressDelta: " + keyPressDelta);
             console.log("KeyUpDownDelta " + keyUpDownDelta);
-            db.close();
-            callback(errorNumber);
+            //Dynamic changing of dbArray to better time checks
+            for (var i=0; i<dbArray.length; i++){
+              dbArray[i].keyUpDown = (dbArray[i].keyUpDown*.9) + (recievedArray[i].keyUpDown*.1);
+              dbArray[i].keyPress = (dbArray[i].keyPress*.9) + (recievedArray[i].keyPress*.1);
+            }
+            var sentArray = JSON.stringify(dbArray);
+            db.run('UPDATE users SET array = $array where username = $username',
+                {
+                  $username: username,
+              $array: sentArray
+                }, function(err)
+                {
+                  //Everything went fine
+                  if (err == null){
+                    console.log("Updated user: " + username + " to array: "+ array);
+                    db.close();
+                    callback(0);
+                  }
+                  //Might be a way to tell if the username exists?
+                  //Currently something went wrong
+                  else{
+                    console.log(err);
+                    db.close();
+                    callback(5);
+                  }
+                });
             return;
           }
           else{
@@ -188,7 +212,7 @@ function doubleCheck() {
     db.run('UPDATE users SET array = $array where username = $username',
         {
           $username: username,
-          $array: sentArray
+      $array: sentArray
         }, function(err)
         {
           //Everything went fine
@@ -214,36 +238,36 @@ module.exports = test;
 //  var jokeArray = [0,1,2,3];
 //  var jsonArray = JSON.stringify(jokeArray);
 /*test.createUser("test",jsonArray, function(worked)
-      {
-        console.log("Create user error: "+ worked);
-      });*/
- /* test.checkUser("test", jsonArray,function(err)
-      { 
-        console.log("Check user error: "+ err);
-      });*/
+  {
+  console.log("Create user error: "+ worked);
+  });*/
+/* test.checkUser("test", jsonArray,function(err)
+   { 
+   console.log("Check user error: "+ err);
+   });*/
 /*test.deleteUser("test", function(err)
-      {
-        console.log("Delete user error: " + err);
-      });*/
+  {
+  console.log("Delete user error: " + err);
+  });*/
 /* var newArray = [ [{ keyUpDown: 79.4, keyPress: 0 },
-                  { keyUpDown: 95.9, keyPress: 153.2 },
-                  { keyUpDown: 74.3, keyPress: 201.7 },
-                  { keyUpDown: 79.9, keyPress: 152.9 },
-                  { keyUpDown: 81.4, keyPress: 163.2 },
-                  { keyUpDown: 67, keyPress: 142.4 },
-                  { keyUpDown: 63, keyPress: 115.9 },
-                  { keyUpDown: 79.7, keyPress: 213.8 } ],
-                 [{ time: 1426805322065, keyUpDown: 112, keyPress: null },
-                  { time: 1426805322233, keyUpDown: 96, keyPress: 168 },
-                  { time: 1426805322369, keyUpDown: 96, keyPress: 136 },
-                  { time: 1426805322529, keyUpDown: 72, keyPress: 160 },
-                  { time: 1426805322673, keyUpDown: 88, keyPress: 144 },
-                  { time: 1426805322769, keyUpDown: 72, keyPress: 96 },
-                  { time: 1426805322913, keyUpDown: 72, keyPress: 144 },
-                  { time: 1426805323057, keyUpDown: 80, keyPress: 144 } ]];
-var newJsonArray = JSON.stringify(newArray); */
+   { keyUpDown: 95.9, keyPress: 153.2 },
+   { keyUpDown: 74.3, keyPress: 201.7 },
+   { keyUpDown: 79.9, keyPress: 152.9 },
+   { keyUpDown: 81.4, keyPress: 163.2 },
+   { keyUpDown: 67, keyPress: 142.4 },
+   { keyUpDown: 63, keyPress: 115.9 },
+   { keyUpDown: 79.7, keyPress: 213.8 } ],
+   [{ time: 1426805322065, keyUpDown: 112, keyPress: null },
+   { time: 1426805322233, keyUpDown: 96, keyPress: 168 },
+   { time: 1426805322369, keyUpDown: 96, keyPress: 136 },
+   { time: 1426805322529, keyUpDown: 72, keyPress: 160 },
+   { time: 1426805322673, keyUpDown: 88, keyPress: 144 },
+   { time: 1426805322769, keyUpDown: 72, keyPress: 96 },
+   { time: 1426805322913, keyUpDown: 72, keyPress: 144 },
+   { time: 1426805323057, keyUpDown: 80, keyPress: 144 } ]];
+   var newJsonArray = JSON.stringify(newArray); */
 
 /*test.updateUser("test", newJsonArray, function(err)
-      {
-          console.log("UpdateUser error: "+ err);
-      });*/
+  {
+  console.log("UpdateUser error: "+ err);
+  });*/
