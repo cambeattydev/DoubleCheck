@@ -1,6 +1,6 @@
 {
   "name": "DoubleCheck",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Library for developers to use to integrate keystroke dynamic authorization into user authentification",
   "main": "doubleCheck.js",
   "scripts": {
