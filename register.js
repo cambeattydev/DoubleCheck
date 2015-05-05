@@ -11,7 +11,7 @@ window.onload = function (){
   var buttons = document.getElementsByClassName("button");
   buttons[0].addEventListener("click", sendArray);
   var forms = document.getElementsByClassName("doubleCheckForm");
-  forms[0].addEventListener("submit", checkEqual);
+  forms[0].addEventListener("submit", checkEqual,true);
 }
 
 times1 = [];
@@ -95,11 +95,11 @@ function doubleCheck(){
   }
 }
 
-function checkEqual(theForm) {
+function checkEqual(e) {
   //Check if the size of each array is equal
   if (bigArray.length < 2){
-    alert('Nothing was put into the bigArray');
-    return false;
+    alert('Nothing was put into the bigArray'); 
+    e.preventDefault();
   }
   else{
     for (var i=1; i < bigArray.length; i++){
@@ -113,10 +113,9 @@ function checkEqual(theForm) {
         for (var i=0; i<passwords.length; i++){
           passwords[i].value = "";
         }
-        return false;
+        e.preventDefault();
       }
     }
-    return true;
   }
 
 }

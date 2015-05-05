@@ -1,6 +1,6 @@
 function doubleCheck() {
   this.fs = require('fs');
-  this.file = "./node_modules/DoubleCheck/doubleCheckDatabaseTest.db";
+  this.file = "./node_modules/DoubleCheck/doubleCheckDatabase.db";
   this.exists = this.fs.existsSync(this.file);
   //Check to see if database already exists if it does not, create it
   //Create a user with the time array that was proided by the user
@@ -11,7 +11,7 @@ function doubleCheck() {
         sumofKeyUp =0,
         sumofKeyPress=0,
         dbArray=[],
-        sqlite3 = require("sqlite3").verbose(),
+        sqlite3 = require("sqlite3"),
         db = new sqlite3.Database(this.file);
 
     //Pick an indvidual array from the large array and use its length
@@ -53,7 +53,7 @@ function doubleCheck() {
   this.checkUser =  function(username, checkArray, callback){
     console.log("Checking user");
     var recievedArray = JSON.parse(checkArray),
-        sqlite3 = require("sqlite3").verbose(),
+        sqlite3 = require("sqlite3"),
         db =  new sqlite3.Database(this.file);
     var str = 'Select array from users where username = "'  + username + '"';
     //Return the array of the user described
@@ -157,7 +157,7 @@ function doubleCheck() {
   //Allow developer to remove a user from the database
   this.deleteUser = function(username,callback){
     console.log("Deleteing " + username + " from database");
-    var sqlite3 = require("sqlite3").verbose(),
+    var sqlite3 = require("sqlite3"),
         db =  new sqlite3.Database(this.file);
     //Delte user from database with the specified username
     db.run('Delete from users where username = $username', {
@@ -187,7 +187,7 @@ function doubleCheck() {
         sumofKeyUp =0,
         sumofKeyPress=0,
         dbArray=[],
-        sqlite3 = require("sqlite3").verbose(),
+        sqlite3 = require("sqlite3"),
         db = new sqlite3.Database(this.file);
 
     //Pick an indvidual array from the large array and use its length
