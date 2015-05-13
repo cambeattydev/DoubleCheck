@@ -67,7 +67,7 @@ function doubleCheck() {
       }
       //The username specified is not in the database
       if (row == undefined){
-        var errorNumber = 4;
+        var errorNumber = 1;;
         console.log("The username provided does not match any uernames in the database");
         db.close();
         callback(errorNumber);
@@ -90,7 +90,7 @@ function doubleCheck() {
             keyPressDelta += keyPressSmall;
             //Make sure that times each level is within time constraints
             if ( keyUpDownSmall > 250 || keyPressSmall > 150){
-              var errorNumber = 2;
+              var errorNumber = 1;
               console.log("Times between each level of the array are too far off");
               console.log("---------------------- "+ i+ "th time through ----------------------");
               console.log("KeyUpDownSmall: "+keyUpDownSmall);
@@ -130,7 +130,7 @@ function doubleCheck() {
                   else{
                     console.log(err);
                     db.close();
-                    callback(5);
+                    callback(0);
                   }
                 });
             return;
@@ -146,7 +146,7 @@ function doubleCheck() {
           }
         }
         else{
-          var errorNumber = 3;
+          var errorNumber = 1;
           console.log("The array lengths were not similar to each other");
           db.close();
           callback(errorNumber);
